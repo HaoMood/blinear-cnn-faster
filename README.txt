@@ -28,14 +28,14 @@ LAYOUT
 USAGE
     Step 1. Fine-tune the fc layer only.
     # Get relu5-3 features from VGG-16 ImageNet pre-trained model.
-    # It gives 75.47% accuracy.
+    # It gives 75.47% accuracy on CUB.
     $ CUDA_VISIBLE_DEVICES=0 ./src/get_conv.py
     $ CUDA_VISIBLE_DEVICES=0,1,2,3 ./src/train.py --base_lr 1e0 \
           --batch_size 64 --epochs 80 --weight_decay 1e-5 \
           | tee "[fc-] base_lr_1e0-weight_decay_1e-5_.log"
 
     Step 2. Fine-tune all layers.
-    # It gives 84.41% accuracy.
+    # It gives 84.41% accuracy on CUB.
     $ CUDA_VISIBLE_DEVICES=0,1,2,3 ./src/train.py --base_lr 1e-2 \
           --batch_size 64 --epochs 80 --weight_decay 1e-5 \
           --pretrained "bcnn_fc_epoch_.pth" \
